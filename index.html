@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ºC To ºF</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: yellow;
+      border-radius: 20px;
+    }
+    ::-webkit-scrollbar {
+      width: 10px;
+      background-color: blue;
+    }
+    *::selection {
+      background-color: green;
+    }
+    h2 {
+      font-size: 2rem;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+      text-transform: uppercase;
+    }
+    body {
+      background-image: linear-gradient(35deg, aqua, darkblue);
+      background-repeat: no-repeat;
+    }
+    button {
+      text-transform: uppercase;
+      cursor: pointer;
+      width: 30vw;
+      height: 5vh;
+      background-image: linear-gradient(-12deg, purple, darkblue);
+      border: 1px solid cadetblue;
+      border-radius: 5px;
+      color: white;
+      text-shadow: 1px 1px 3px black;
+      filter: drop-shadow(1px 1px 1px black);
+      font-size: 3vh;
+    }
+    button:nth-child(2) {
+      margin: 0 10px;
+    }
+    input {
+      width: 70vw;
+      height: 7vh;
+      font-size: 1.5rem;
+      padding-left: 20px;
+      border-radius: 20px;
+      border: 0;
+    }
+    button:active {
+      transform: scale(0.91);
+      color: darkgray;
+      text-shadow: 1px 1px 1px whitesmoke;
+      filter: drop-shadow(3px 3px 3px blue);
+    }
+    .continer {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 5rem;
+    }
+    input:focus {
+      outline: 0;
+      border: 0;
+      content: "سلام";
+      clear: both;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-width: 10px;
+      border-right: 5px solid blue;
+      transition: 300ms ease-in-out;
+      border-bottom: 3px solid blue;
+    }
+    .childs2 {
+      width: 70vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    fieldset{
+      margin: 0;
+      padding: 0;
+      border-radius: 50px;
+      border: 2px solid green;
+      position: relative;
+      border: 0;
+    }
+    legend:nth-child(1){
+      display: none;
+      position: absolute;
+      top: -20px;
+      right: 30px;
+      color: white;
+      font-family: b morvarid;
+      text-shadow: 1px 1px 1px black;
+      z-index: 22;
+      color: green;
+      font-size: 1.2rem;
+    }
+  </style>
+  <body>
+    <div class="continer">
+      <h2 id="headerMessage">Converter ºc to ºf</h2>
+      <div class="childs">
+        <fieldset>
+          <legend>سلام</legend>
+          <input type="tel" name="inputConverter"  id="inputConverter" placeholder="ºC" />
+        </fieldset>
+      </div>
+      <h3 id="message"></h3>
+      <div class="childs2">
+        <button id="convert">convert</button>
+        <button id="reset">Reset</button>
+        <button id="change">Change</button>
+      </div>
+    </div>
+    <script>let inputConverter = document.getElementById("inputConverter")
+      let buttonReset = document.getElementById("reset")
+      let buttonConvert = document.getElementById("convert")
+      let buttonChange = document.getElementById("change")
+      let headerMessage = document.getElementById("headerMessage")
+      let message = document.getElementById("message")
+      buttonReset.addEventListener("click", function () {
+          inputConverter.value = ""
+          message.innerHTML = ""
+      })
+      let IsChange = true
+      buttonChange.addEventListener("click", function () {
+          if (IsChange) {
+              document.title = "ºF To ºC"
+              headerMessage.innerHTML = "Converter ºF To ºC"
+              inputConverter.setAttribute("placeholder", "ºF")
+              IsChange = false
+          }
+          else {
+              document.title = "ºC To ºF"
+              headerMessage.innerHTML = "Converter ºC To ºF"
+              inputConverter.setAttribute("placeholder", "ºC")
+              IsChange = true
+          }
+      })
+      buttonConvert.addEventListener("click", function () {
+          if(!inputConverter.value==""){
+              let calcuF = ((inputConverter.value * 9 / 5) + 32)
+              if (IsChange) {
+                  // Convert F
+                  message.style.color="white"
+                  message.innerHTML = inputConverter.value + " ºC To " + calcuF + " ºF "
+              }
+              else {
+                  // Convert C
+                  message.innerHTML =  calcuF + " ºF To " + inputConverter.value + " ºC "
+              }
+          }
+          if(! isNaN(inputConverter.value)){
+              message.style.color="darkred"
+              message.style.textShadow="1px 1px 1px white"
+              message.innerHTML="Don't Use Of String Only Insert Number"
+          }
+          else{
+              message.style.color="darkred"
+              message.style.textShadow="1px 1px 1px white"
+              message.innerHTML="Please Insert Number To Input Box"
+          }
+      })</script>
+  </body>
+</html>
